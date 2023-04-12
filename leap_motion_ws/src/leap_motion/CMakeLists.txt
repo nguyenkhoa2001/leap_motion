@@ -10,6 +10,7 @@ add_compile_options(-std=c++11)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
+  serial
 )
 
 ## System dependencies are found with CMake's conventions
@@ -118,7 +119,9 @@ include_directories(
   include
   ${catkin_INCLUDE_DIRS}
   ${PROJECT_SOURCE_DIR}/LeapSDK/include/
+  ${PROJECT_SOURCE_DIR}/include/
 )
+
 
 # Use Leap fpr x64
 set(LIB_LEAP ${PROJECT_SOURCE_DIR}/LeapSDK/lib/x64/libLeap.so)
@@ -127,6 +130,7 @@ set(LIB_LEAP ${PROJECT_SOURCE_DIR}/LeapSDK/lib/x64/libLeap.so)
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/leap_motion.cpp
 # )
+
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries

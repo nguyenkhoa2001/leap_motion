@@ -7,4 +7,9 @@
 # new environment variables
 
 # modified environment variables
-export PWD='/home/tqhung/Desktop/leap_motion_ws/build'
+export CMAKE_PREFIX_PATH="/home/tqhung/GitHubLeapMotion/leap_motion/leap_motion_ws/devel:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/home/tqhung/GitHubLeapMotion/leap_motion/leap_motion_ws/devel/lib:$LD_LIBRARY_PATH"
+export PKG_CONFIG_PATH="/home/tqhung/GitHubLeapMotion/leap_motion/leap_motion_ws/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
+export PWD='/home/tqhung/GitHubLeapMotion/leap_motion/leap_motion_ws/build'
+export ROSLISP_PACKAGE_DIRECTORIES='/home/tqhung/GitHubLeapMotion/leap_motion/leap_motion_ws/devel/share/common-lisp'
+export ROS_PACKAGE_PATH="/home/tqhung/Desktop/leap_motion_ws/src:/home/tqhung/GitHubLeapMotion/leap_motion/leap_motion_ws/src:$ROS_PACKAGE_PATH"

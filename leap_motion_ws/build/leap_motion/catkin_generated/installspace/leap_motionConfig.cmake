@@ -67,14 +67,14 @@ set(leap_motion_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(leap_motion_SOURCE_PREFIX /home/tqhung/Desktop/leap_motion_ws/src/leap_motion)
-  set(leap_motion_DEVEL_PREFIX /home/tqhung/Desktop/leap_motion_ws/devel)
+  set(leap_motion_SOURCE_PREFIX /home/tqhung/GitHubLeapMotion/leap_motion/leap_motion_ws/src/leap_motion)
+  set(leap_motion_DEVEL_PREFIX /home/tqhung/GitHubLeapMotion/leap_motion/leap_motion_ws/devel)
   set(leap_motion_INSTALL_PREFIX "")
   set(leap_motion_PREFIX ${leap_motion_DEVEL_PREFIX})
 else()
   set(leap_motion_SOURCE_PREFIX "")
   set(leap_motion_DEVEL_PREFIX "")
-  set(leap_motion_INSTALL_PREFIX /home/tqhung/Desktop/leap_motion_ws/install)
+  set(leap_motion_INSTALL_PREFIX /home/tqhung/GitHubLeapMotion/leap_motion/leap_motion_ws/install)
   set(leap_motion_PREFIX ${leap_motion_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/tqhung/Desktop/leap_motion_ws/install/lib;/home/tqhung/Desktop/leap_motion_ws/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/tqhung/GitHubLeapMotion/leap_motion/leap_motion_ws/install/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

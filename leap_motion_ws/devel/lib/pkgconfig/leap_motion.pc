@@ -1,4 +1,4 @@
-prefix=/home/tqhung/Desktop/leap_motion_ws/devel
+prefix=/home/tqhung/GitHubLeapMotion/leap_motion/leap_motion_ws/devel
 
 Name: leap_motion
 Description: Description of leap_motion

@@ -10,6 +10,7 @@
 #include <cstring>
 #include "Leap.h"
 #include "ros/ros.h"
+#include "publish_data.h"
 
 //using namespace Leap;
 
@@ -39,10 +40,10 @@ void SampleListener::onInit(const Leap::Controller& controller) {
 
 void SampleListener::onConnect(const Leap::Controller& controller) {
   std::cout << "Connected" << std::endl;
-  controller.enableGesture(Leap::Gesture::TYPE_CIRCLE);
-  controller.enableGesture(Leap::Gesture::TYPE_KEY_TAP);
-  controller.enableGesture(Leap::Gesture::TYPE_SCREEN_TAP);
-  controller.enableGesture(Leap::Gesture::TYPE_SWIPE);
+  //controller.enableGesture(Leap::Gesture::TYPE_CIRCLE);
+  //controller.enableGesture(Leap::Gesture::TYPE_KEY_TAP);
+  //controller.enableGesture(Leap::Gesture::TYPE_SCREEN_TAP);
+  //controller.enableGesture(Leap::Gesture::TYPE_SWIPE);
 }
 
 void SampleListener::onDisconnect(const Leap::Controller& controller) {
@@ -59,10 +60,10 @@ void SampleListener::onFrame(const Leap::Controller& controller) {
   const Leap::Frame frame = controller.frame();
   std::cout << "Frame id: " << frame.id()
             << ", timestamp: " << frame.timestamp()
-            << ", hands: " << frame.hands().count()
-            << ", extended fingers: " << frame.fingers().extended().count()
-            << ", tools: " << frame.tools().count()
-            << ", gestures: " << frame.gestures().count() << std::endl;
+            << ", hands: " << frame.hands().count();
+            //<< ", extended fingers: " << frame.fingers().extended().count()
+            //<< ", tools: " << frame.tools().count()
+            //<< ", gestures: " << frame.gestures().count() << std::endl;
 
   Leap::HandList hands = frame.hands();
   for (Leap::HandList::const_iterator hl = hands.begin(); hl != hands.end(); ++hl) {
@@ -71,6 +72,13 @@ void SampleListener::onFrame(const Leap::Controller& controller) {
     std::string handType = hand.isLeft() ? "Left hand" : "Right hand";
     std::cout << std::string(2, ' ') << handType << ", id: " << hand.id()
               << ", palm position: " << hand.palmPosition() << std::endl;
+    //Bổ sung
+    Leap::Vector handCenter = hand.palmPosition();
+    float handPalmPosition[3];
+    handPalmPosition[0] = handCenter[0];
+    handPalmPosition[1] = handCenter[1];
+    handPalmPosition[2] = handCenter[2];
+    //
     // Get the hand's normal vector and direction
     const Leap::Vector normal = hand.palmNormal();
     const Leap::Vector direction = hand.direction();
@@ -82,11 +90,11 @@ void SampleListener::onFrame(const Leap::Controller& controller) {
 
     // Get the Arm bone
     
-    Leap::Arm arm = hand.arm();
+    //Leap::Arm arm = hand.arm();
 
     // Get fingers
     
-    const Leap::FingerList fingers = hand.fingers();
+    /*const Leap::FingerList fingers = hand.fingers();
     for (Leap::FingerList::const_iterator fl = fingers.begin(); fl != fingers.end(); ++fl) {
       const Leap::Finger finger = *fl;
 
@@ -98,19 +106,19 @@ void SampleListener::onFrame(const Leap::Controller& controller) {
 
       }
       
-    }
+    }*/
   }
 
-  // Get tools
+  /*// Get tools
   const Leap::ToolList tools = frame.tools();
   for (Leap::ToolList::const_iterator tl = tools.begin(); tl != tools.end(); ++tl) {
     const Leap::Tool tool = *tl;
     std::cout << std::string(2, ' ') <<  "Tool, id: " << tool.id()
               << ", position: " << tool.tipPosition()
               << ", direction: " << tool.direction() << std::endl;
-  }
+  }*/
 
-  // Get gestures
+  /*// Get gestures
   const Leap::GestureList gestures = frame.gestures();
   for (int g = 0; g < gestures.count(); ++g) {
     Leap::Gesture gesture = gestures[g];
@@ -177,8 +185,8 @@ void SampleListener::onFrame(const Leap::Controller& controller) {
         break;
     }
   }
-
-  if (!frame.hands().isEmpty() || !gestures.isEmpty()) {
+*/
+  if (!frame.hands().isEmpty() /*|| !gestures.isEmpty()*/) {
     std::cout << std::endl;
   }
 
@@ -213,7 +221,7 @@ void SampleListener::onServiceDisconnect(const Leap::Controller& controller) {
 int main(int argc, char** argv) {
   // Create a sample listener and controller
   ros::init(argc, argv, "hello_node");
-  ros::NodeHandle nh("hello_node");
+  //ros::NodeHandle nh("hello_node");
   SampleListener listener;
   Leap::Controller controller;
 
